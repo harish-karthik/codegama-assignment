@@ -40,16 +40,20 @@ function Restaurant() {
   return (
     <div className={classes.restaurantContainer}>
       <RestaurantHeader {...restaurantInfo} />
-      {menuList.map((menuSection) => (
-        <React.Fragment key={Math.random()}>
-          <p>{menuSection.name}</p>
-          <ul>
-            {menuSection.menuItems.map((menuItem) => (
-              <li key={Math.random()}>{menuItem.name}</li>
-            ))}
-          </ul>
-        </React.Fragment>
-      ))}
+      <main className={classes.menuCard}>
+        {menuList.map((menuSection) => (
+          <div className={classes.menuSegment} key={Math.random()}>
+            <p className={classes.menuTitle}>{menuSection.name}</p>
+            <ul className={classes.menuList}>
+              {menuSection.menuItems.map((menuItem) => (
+                <li className={classes.menuItem} key={Math.random()}>
+                  {menuItem.name}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </main>
     </div>
   );
 }
