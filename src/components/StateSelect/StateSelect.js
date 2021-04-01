@@ -1,27 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Select from "react-select";
 import classes from "./StateSelect.module.css";
 import { stateOptions } from "../../utilities/data";
 
-function StateSelect() {
-  const [displayState, setDisplayState] = useState("NY");
-  function changeState(option) {
-    setDisplayState(option.value);
+function StateSelect(props) {
+  const { selectedRegion, setSelectedRegion } = props;
+  let selectedIndex;
+  function handleChange(selectedObject) {
+    setSelectedRegion(selectedObject);
   }
-  useEffect(() => {
-    console.log(displayState);
-  }, [displayState]);
+  if (selectedRegion !== "") {
+    selectedIndex = stateOptions.findIndex(
+      (element) => element.value === selectedRegion
+    );
+  }
   return (
     <>
-      <label className={classes.selectLabel} htmlFor='stateSelect'>
-        Select a Region
-      </label>
       <Select
         className={classes.stateSelect}
+        placeholder={
+          stateOptions[selectedIndex] === undefined
+            ? "Select..."
+            : stateOptions[selectedIndex].label
+        }
         isSearchable={true}
+        isClearable={true}
         name='state'
         options={stateOptions}
-        onChange={changeState}
+        onChange={handleChange}
         id='stateSelect'
       />
     </>
