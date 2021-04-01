@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import StateSelect from "../components/StateSelect/StateSelect";
 import Modal from "../components/Modal/Modal";
 import LoadingAnimation from "../components/LoadingAnimation/LoadingAnimation";
@@ -9,6 +9,8 @@ function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [firstLoad, setFirstLoad] = useState(true);
   const [showModal, setShowModal] = useState(true);
+  const [restaurantList, setRestaurantList] = useState([]);
+  const isComponentMounted = useRef(false);
   function firstLoadRegionSelect(object) {
     setIsLoading(true);
     setSelectedRegion(object.value);
@@ -20,13 +22,21 @@ function Home() {
     setIsLoading(true);
   }
   useEffect(() => {
-    fetch(`${searchByStateUrl + selectedRegion.toLowerCase()}`, requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        console.log(result);
-        setIsLoading(false);
-      })
-      .catch((error) => console.log("error", error));
+    if (isComponentMounted.current) {
+      fetch(
+        `${searchByStateUrl + selectedRegion.toLowerCase()}`,
+        requestOptions
+      )
+        .then((response) => response.json())
+        .then((result) => {
+          let listArray = result.data.slice(0, 10);
+          setRestaurantList([...listArray]);
+          setIsLoading(false);
+        })
+        .catch((error) => console.log("error", error));
+    } else {
+      isComponentMounted.current = true;
+    }
   }, [selectedRegion]);
   if (firstLoad) {
     return (
