@@ -1,0 +1,10 @@
+.restaurantList {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+}
+@media screen and (min-width: 1024px) {
+  .restaurantList {
+    justify-content: space-between;
+  }
+}

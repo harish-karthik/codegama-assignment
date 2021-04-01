@@ -1,13 +1,15 @@
 import React from "react";
+import RestaurantLinks from "../RestaurantLinks/RestaurantLinks";
+import classes from "./RestaurantList.module.css";
 
 function RestaurantList(props) {
   const { allRestaurants } = props;
   return (
-    <ul>
+    <div className={classes.restaurantList}>
       {allRestaurants.map((restaurant) => (
-        <li key={restaurant.restaurant_id}>{restaurant.restaurant_name}</li>
+        <RestaurantLinks key={restaurant.restaurant_id} {...restaurant} />
       ))}
-    </ul>
+    </div>
   );
 }
 
