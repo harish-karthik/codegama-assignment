@@ -3,6 +3,7 @@ import StateSelect from "../../components/StateSelect/StateSelect";
 import Modal from "../../components/Modal/Modal";
 import LoadingAnimation from "../../components/LoadingAnimation/LoadingAnimation";
 import RestaurantList from "../../components/RestaurantList/RestaurantList";
+import RestaurantSearch from "../../components/RestaurantSearch/RestaurantSearch";
 import classes from "./Home.module.css";
 import {
   searchByStateUrl,
@@ -68,6 +69,7 @@ function Home() {
         selectedRegion={selectedRegion}
         setSelectedRegion={updateRegion}
       />
+      <RestaurantSearch />
       <RestaurantList allRestaurants={restaurantList} />
     </div>
   );
