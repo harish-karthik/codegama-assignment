@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import StateSelect from "../components/StateSelect/StateSelect";
 import Modal from "../components/Modal/Modal";
+import { searchByStateUrl, requestOptions } from "../utilities/requestOptions";
 
 function Home() {
   const [selectedRegion, setSelectedRegion] = useState("");
-  const [isLodaing, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [firstLoad, setFirstLoad] = useState(true);
   const [showModal, setShowModal] = useState(true);
   function firstLoadRegionSelect(object) {
@@ -15,7 +16,14 @@ function Home() {
   }
   function updateRegion(object) {
     setSelectedRegion(object.value);
+    setIsLoading(true);
   }
+  useEffect(() => {
+    fetch(`${searchByStateUrl + selectedRegion.toLowerCase()}`, requestOptions)
+      .then((response) => response.json())
+      .then((result) => console.log(result))
+      .catch((error) => console.log("error", error));
+  }, [selectedRegion]);
   if (firstLoad) {
     return (
       <Modal
