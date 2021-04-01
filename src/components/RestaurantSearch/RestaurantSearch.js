@@ -32,6 +32,7 @@ function RestaurantSearch() {
       loadOptions={loadOptions}
       defaultOptions
       onChange={handleChange}
+      placeholder='Search For Restaurant'
     />
   );
 }

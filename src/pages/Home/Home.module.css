@@ -3,3 +3,30 @@
   max-width: 1140px;
   margin: 0 auto;
 }
+.homepageTitle {
+  font-weight: 500;
+  font-size: 1.75rem;
+  margin: 1rem auto;
+}
+.homepageHeader {
+  display: flex;
+  flex-direction: column;
+}
+.homepageRegionSearch {
+  margin-top: 1rem;
+}
+@media screen and (min-width: 768px) {
+  .homepageHeader {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 2rem;
+  }
+  .homepageRestaurantSearch {
+    flex: 1 1 60%;
+    margin-right: 3rem;
+  }
+  .homepageRegionSearch {
+    flex: 1 1 30%;
+    margin-top: 0;
+  }
+}

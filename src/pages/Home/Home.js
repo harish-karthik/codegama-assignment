@@ -4,11 +4,11 @@ import Modal from "../../components/Modal/Modal";
 import LoadingAnimation from "../../components/LoadingAnimation/LoadingAnimation";
 import RestaurantList from "../../components/RestaurantList/RestaurantList";
 import RestaurantSearch from "../../components/RestaurantSearch/RestaurantSearch";
-import classes from "./Home.module.css";
 import {
   searchByStateUrl,
   requestOptions,
 } from "../../utilities/requestOptions";
+import classes from "./Home.module.css";
 
 function Home() {
   const [selectedRegion, setSelectedRegion] = useState("");
@@ -64,12 +64,18 @@ function Home() {
   }
   return (
     <div className={classes.homepage}>
-      <h1>Restaurants Around You</h1>
-      <StateSelect
-        selectedRegion={selectedRegion}
-        setSelectedRegion={updateRegion}
-      />
-      <RestaurantSearch />
+      <h1 className={classes.homepageTitle}>Restaurants Around You</h1>
+      <header className={classes.homepageHeader}>
+        <div className={classes.homepageRestaurantSearch}>
+          <RestaurantSearch />
+        </div>
+        <div className={classes.homepageRegionSearch}>
+          <StateSelect
+            selectedRegion={selectedRegion}
+            setSelectedRegion={updateRegion}
+          />
+        </div>
+      </header>
       <RestaurantList allRestaurants={restaurantList} />
     </div>
   );
