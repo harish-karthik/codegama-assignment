@@ -1,0 +1,11 @@
+.cuisineList {
+  margin: 0;
+}
+.restaurantCuisine {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background-color: #e5ffff;
+  color: #0082c8;
+  font-size: 12px;
+  margin-right: 0.25rem;
+}

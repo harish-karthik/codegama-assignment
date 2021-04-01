@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import LoadingAnimation from "../../components/LoadingAnimation/LoadingAnimation";
 import { useParams } from "react-router-dom";
 import { searchByIdUrl, requestOptions } from "../../utilities/requestOptions";
+import RestaurantHeader from "../../components/RestaurantHeader/RestaurantHeader";
+import classes from "./Restaurant.module.css";
 function Restaurant() {
   let { restaurantId } = useParams();
   const [isLoading, setIsLoading] = useState(true);
@@ -14,6 +16,9 @@ function Restaurant() {
         const resultRestaurantInfo = {
           name: result.result.restaurant_name,
           address: { ...result.result.address },
+          phoneNumber: result.result.restaurant_phone,
+          cuisines: [...result.result.cuisines],
+          restaurant_id: restaurantId,
         };
         const resultMenuList = [];
         result.result.menus.forEach((menu) =>
@@ -33,8 +38,8 @@ function Restaurant() {
     return <LoadingAnimation />;
   }
   return (
-    <div>
-      <h1>{restaurantInfo.name}</h1>
+    <div className={classes.restaurantContainer}>
+      <RestaurantHeader {...restaurantInfo} />
       {menuList.map((menuSection) => (
         <React.Fragment key={Math.random()}>
           <p>{menuSection.name}</p>
