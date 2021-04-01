@@ -64,7 +64,7 @@ function Home() {
   }
   return (
     <div className={classes.homepage}>
-      <h1>Restaurants Around Your</h1>
+      <h1>Restaurants Around You</h1>
       <StateSelect
         selectedRegion={selectedRegion}
         setSelectedRegion={updateRegion}

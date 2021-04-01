@@ -3,9 +3,14 @@ import {
   searchByNameUrl,
   requestOptions,
 } from "../../utilities/requestOptions";
+import { useHistory } from "react-router-dom";
 import AsyncSelect from "react-select/async";
 
 function RestaurantSearch() {
+  let history = useHistory();
+  function handleChange(selectedObject) {
+    history.push(`/restaurant/${selectedObject.value}`);
+  }
   function loadOptions(inputValue) {
     return fetch(
       `${searchByNameUrl + inputValue.toLowerCase()}`,
@@ -21,7 +26,14 @@ function RestaurantSearch() {
         })
       );
   }
-  return <AsyncSelect cacheOptions loadOptions={loadOptions} defaultOptions />;
+  return (
+    <AsyncSelect
+      cacheOptions
+      loadOptions={loadOptions}
+      defaultOptions
+      onChange={handleChange}
+    />
+  );
 }
 
 export default RestaurantSearch;
