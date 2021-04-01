@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import StateSelect from "../components/StateSelect/StateSelect";
 import Modal from "../components/Modal/Modal";
 import LoadingAnimation from "../components/LoadingAnimation/LoadingAnimation";
+import RestaurantList from "../components/RestaurantList/RestaurantList";
 import { searchByStateUrl, requestOptions } from "../utilities/requestOptions";
 
 function Home() {
@@ -63,6 +64,7 @@ function Home() {
         selectedRegion={selectedRegion}
         setSelectedRegion={updateRegion}
       />
+      <RestaurantList allRestaurants={restaurantList} />
     </div>
   );
 }
