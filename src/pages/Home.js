@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import StateSelect from "../components/StateSelect/StateSelect";
 import Modal from "../components/Modal/Modal";
+import LoadingAnimation from "../components/LoadingAnimation/LoadingAnimation";
 import { searchByStateUrl, requestOptions } from "../utilities/requestOptions";
 
 function Home() {
@@ -21,7 +22,10 @@ function Home() {
   useEffect(() => {
     fetch(`${searchByStateUrl + selectedRegion.toLowerCase()}`, requestOptions)
       .then((response) => response.json())
-      .then((result) => console.log(result))
+      .then((result) => {
+        console.log(result);
+        setIsLoading(false);
+      })
       .catch((error) => console.log("error", error));
   }, [selectedRegion]);
   if (firstLoad) {
@@ -38,6 +42,9 @@ function Home() {
         />
       </Modal>
     );
+  }
+  if (isLoading) {
+    return <LoadingAnimation />;
   }
   return (
     <div>
