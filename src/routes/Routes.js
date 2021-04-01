@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import Home from "../pages/Home";
-import Restaurant from "../pages/Restaurant";
+import Home from "../pages/Home/Home";
+import Restaurant from "../pages/Restaurant/Restaurant";
 function Routes() {
   return (
     <Switch>

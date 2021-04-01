@@ -5,7 +5,7 @@ function RestaurantList(props) {
   return (
     <ul>
       {allRestaurants.map((restaurant) => (
-        <li>{restaurant.restaurant_name}</li>
+        <li key={restaurant.restaurant_id}>{restaurant.restaurant_name}</li>
       ))}
     </ul>
   );

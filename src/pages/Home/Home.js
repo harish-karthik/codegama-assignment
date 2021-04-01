@@ -1,9 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
-import StateSelect from "../components/StateSelect/StateSelect";
-import Modal from "../components/Modal/Modal";
-import LoadingAnimation from "../components/LoadingAnimation/LoadingAnimation";
-import RestaurantList from "../components/RestaurantList/RestaurantList";
-import { searchByStateUrl, requestOptions } from "../utilities/requestOptions";
+import StateSelect from "../../components/StateSelect/StateSelect";
+import Modal from "../../components/Modal/Modal";
+import LoadingAnimation from "../../components/LoadingAnimation/LoadingAnimation";
+import RestaurantList from "../../components/RestaurantList/RestaurantList";
+import classes from "./Home.module.css";
+import {
+  searchByStateUrl,
+  requestOptions,
+} from "../../utilities/requestOptions";
 
 function Home() {
   const [selectedRegion, setSelectedRegion] = useState("");
@@ -58,8 +62,8 @@ function Home() {
     return <LoadingAnimation />;
   }
   return (
-    <div>
-      <h1>Home page</h1>
+    <div className={classes.homepage}>
+      <h1>Restaurants Around Your</h1>
       <StateSelect
         selectedRegion={selectedRegion}
         setSelectedRegion={updateRegion}
